@@ -9,7 +9,7 @@ An experimental Auth0 SDK for Unity platform.
 ## Installation
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](TBC) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.1.unitypackage) and import it in your proyect as a `Custom Package`.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
@@ -70,3 +70,7 @@ public void SignOutBtn()
     this.UpdateLoginStatus();
 }
 ```
+
+<img width="400" src="https://user-images.githubusercontent.com/178506/151596657-946d3b10-815e-4b82-bd05-ebebde2f34c1.png"> <img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png">
+
+
