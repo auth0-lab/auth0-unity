@@ -18,12 +18,55 @@ An experimental Auth0 SDK for Unity platform.
 The first thing to do is to initialize the `AuthManager` script. It expose a singletone instance with the following properties:
 
 * `AuthManager.Instance.Auth0`: Auth0 Authentication API client.
-* `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance:
-  - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
-  - `void ClearCredentials()`: Remove the stored credentials. Useful to log the user out of your app.
-  - `Task<Credentials> GetCredentials()`: If the access token has expired, the credentials manager automatically uses the refresh token and renews the credentials. New credentials are be stored for future access.
-  - `SaveCredentials(Credentials)`: Save the credentials (obtained, for example, during device flow).
+* `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance.
 
-The Auth0 SDK provides an empty scene to initialize the `AuthManager` script before the rest of the components. Just include the `Auth0/Scenes/Preload` scene to your project and make sure to open it before any other scene. From `File -> Build Settings...`:
+The Auth0 SDK provides an empty scene to initialize the `AuthManager` script before the rest of your components. Just include the `Auth0/Scenes/Preload` scene to your project and set it as the first scene from `File -> Build Settings...`:
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151579578-d28f7698-0bb5-4075-b2b5-b441a238ae44.png">
+
+Then, set the required `AuthManager` properties, under the `Inspector` tab:
+
+<img width="500" src="https://user-images.githubusercontent.com/178506/151585295-818fa303-41e2-4e21-93b9-081717c0f91d.png">
+
+Finally, include the `Auth0/Prefabs/DeviceFlow` prefab in the scene/section that you consider, and (optionally) set the following params:
+
+<img width="500" src="https://user-images.githubusercontent.com/178506/151587301-ea28bc25-6a7e-44eb-904b-ad4b329b3227.png">
+
+* When an authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used to request a new user token, without forcing the user to perform authentication again.
+* If you don't want to use default labels to show verification uri, user code and result, just override them from `UI Components` section.
+
+### Common scenarios
+
+1. Change UI based on current credentials:
+
+```c#
+public void UpdateLoginStatus()
+{
+    var loggedIn = AuthManager.Instance.credentials.HasValidCredentials();
+
+    if (loggedIn)
+    {
+        // Show a welcome message SignOut button
+        var creds = await AuthManager.Instance.credentials.GetCredentials();
+        var userInfo = await AuthManager.Instance.Auth0.GetUserInfo(creds.AccessToken);
+
+        welcomeText.text = String.Format("Welcome back {0}!", userInfo.FullName);
+        signOutButton.SetActive(true);
+    }
+    else
+    {
+        // Show SignIn button which navigates to the `DeviceFlow` prefab.
+        signInButton.SetActive(true);
+    }
+}
+```
+
+2. Logout
+
+```cs
+public void SignOutBtn()
+{
+    AuthManager.Instance.credentials.ClearCredentials();
+    this.UpdateLoginStatus();
+}
+```
