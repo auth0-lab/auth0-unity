@@ -20,11 +20,11 @@ The first thing to do is to initialize the `AuthManager` script. It expose a sin
 * `AuthManager.Instance.Auth0`: Auth0 Authentication API client.
 * `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance.
 
-The Auth0 SDK provides an empty scene to initialize the `AuthManager` script for you before the rest of your components. Just include the `Auth0/Scenes/Preload` scene to your project and set it as the first scene from `File -> Build Settings... -> Scenes In Build`:
+The Auth0 SDK provides an empty scene to initialize the `AuthManager` script for you before the rest of your components. Just include the `Auth0/Scenes/Preload` scene to your project and set it as the first project's scene in `File -> Build Settings... -> Scenes In Build` section:
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151579578-d28f7698-0bb5-4075-b2b5-b441a238ae44.png">
 
-Then, set your Auth0 `Domain` and `Client Id` in the `AuthManager` properties, under the `Inspector` tab:
+Then, set your Auth0 `Domain` and `Client Id` in the `AuthManager` properties, located in the `Inspector` tab:
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151585295-818fa303-41e2-4e21-93b9-081717c0f91d.png">
 
@@ -33,7 +33,7 @@ Finally, include the `Auth0/Prefabs/DeviceFlow` prefab in the scene/section that
 <img width="500" src="https://user-images.githubusercontent.com/178506/151587301-ea28bc25-6a7e-44eb-904b-ad4b329b3227.png">
 
 * When authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used by `AuthManager` to request a new user token, without forcing the user to perform authentication again.
-* If you don't want to use default text components to show verification uri, user code and result, just override them from `UI Components` section.
+* If you don't want to use default UI components to show verification uri, user code and result, just override them from `UI Components` section.
 
 ### Common scenarios
 
