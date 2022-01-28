@@ -13,9 +13,9 @@ namespace Auth0
         
         public static AuthManager Instance { get; private set; }
 
-        public AuthApiClient auth0;
+        public AuthApiClient Auth0;
 
-        public BaseCredentialsManager credentials;
+        public BaseCredentialsManager Credentials;
 
         private void Awake()
         {
@@ -24,13 +24,13 @@ namespace Auth0
                 throw new ArgumentNullException("Missing Configuration", "Please go to 'Preload' scene and set 'Auth0 Domain' and 'Auth0 Client Id' properties under 'Auth Manager' script section.");
             }
 
-            this.auth0 = new AuthApiClient(this.Domain, this.ClientId);
+            this.Auth0 = new AuthApiClient(this.Domain, this.ClientId);
 
             // IMPORTANT! The PlayerPrefsCredentialsManager will store the Access Token, Refresh Token and ID Token
             // in `/data/data/pkg-name/shared_prefs/pkg-name.v2.playerprefs.xml` as plain-text.
             // Consider implementing a different credentials manager (which inherits from BaseCredentialsManager class)
             // to encrypt those values before persist them.
-            this.credentials = new PlayerPrefsCredentialsManager(this.auth0);
+            this.Credentials = new PlayerPrefsCredentialsManager(this.Auth0);
 
             Instance = this;
             DontDestroyOnLoad(this);

@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7331474976166663216}
   - component: {fileID: 7331474976166663223}
   m_Layer: 5
-  m_Name: Auth0DeviceFlow
+  m_Name: DeviceFlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

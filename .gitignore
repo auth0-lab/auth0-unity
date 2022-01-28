@@ -47,6 +47,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+!Auth0UnitySDK-v*.unitypackage
 
 # macos
 .DS_Store

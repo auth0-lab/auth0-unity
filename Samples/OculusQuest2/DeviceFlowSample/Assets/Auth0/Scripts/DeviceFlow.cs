@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Auth0
 {
-    public class Auth0DeviceFlow : MonoBehaviour
+    public class DeviceFlow : MonoBehaviour
     {
         [Header("Auth Params")]
         public string Scope = "openid profile offline_access";
@@ -24,16 +24,16 @@ namespace Auth0
 
         private async void OnEnable()
         {
-            await this.DeviceFlow();
+            await this.StartFlow();
         }
 
-        private async Task DeviceFlow()
+        private async Task StartFlow()
         {
             try
             {
                 this.ResetInstructions();
 
-                var auth0 = AuthManager.Instance.auth0;
+                var auth0 = AuthManager.Instance.Auth0;
                 var deviceCodeResp = await auth0.StartDeviceFlow(this.Scope, this.Audience);
 
                 this.VerificationUri.text = deviceCodeResp.VerificationUri;
@@ -41,7 +41,7 @@ namespace Auth0
 
                 var tokenResp = await auth0.ExchangeDeviceCode(deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
 
-                AuthManager.Instance.credentials.SaveCredentials(new Credentials
+                AuthManager.Instance.Credentials.SaveCredentials(new Credentials
                 {
                     AccessToken = tokenResp.AccessToken,
                     ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResp.ExpiresIn),

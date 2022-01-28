@@ -12,7 +12,7 @@ public class MainSectionController : MonoBehaviour
 
     public void SignOutBtn()
     {
-        AuthManager.Instance.credentials.ClearCredentials();
+        AuthManager.Instance.Credentials.ClearCredentials();
         this.UpdateLoginStatus();
     }
 
@@ -23,7 +23,7 @@ public class MainSectionController : MonoBehaviour
 
     private void UpdateLoginStatus()
     {
-        var loggedIn = AuthManager.Instance.credentials.HasValidCredentials();
+        var loggedIn = AuthManager.Instance.Credentials.HasValidCredentials();
 
         if (loggedIn)
         {
