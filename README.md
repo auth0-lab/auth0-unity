@@ -55,7 +55,7 @@ public void UpdateLoginStatus()
     }
     else
     {
-        // Show SignIn button which navigates to the `DeviceFlow` prefab.
+        // Show SignIn button which navigates to the section that contains the `DeviceFlow` prefab.
         signInButton.SetActive(true);
     }
 }
