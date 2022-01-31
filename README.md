@@ -6,7 +6,7 @@ An experimental Auth0 SDK for Unity platform.
 * Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
 * Unity 2020.x (or later)
 
-## Installation
+## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
 * **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.1.unitypackage) and import it in your proyect as a `Custom Package`.
