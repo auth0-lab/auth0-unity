@@ -32,7 +32,7 @@ namespace Auth0
             // TODO: use your favorite strategy to load the following settings (ie, RemoteSettings)
             this.Settings = new Settings
             {
-                Domain = "",
+                Domain = "", // "acme.auth0.com"
                 ClientId = "",
                 Scope = "openid profile offline_access",
                 Audience = ""
