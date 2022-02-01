@@ -19,3 +19,5 @@ this.Settings = new Settings
 
 2. Connect your `Oculus Quest 2` to your computer through a USB cable.
 3. Deploy the app from `File -> Build and Run`.
+
+<img width="500" src="https://user-images.githubusercontent.com/178506/151596657-946d3b10-815e-4b82-bd05-ebebde2f34c1.png">
