@@ -4,7 +4,7 @@ An experimental Auth0 SDK for Unity platform.
 ## Requirements
 
 * Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
-* Unity 2020.x (or later)
+* Unity 2020.x (or later).
 
 ## Setup
 
