@@ -39,6 +39,11 @@ Alternativelly, if you don't want to use this prefab to show verification uri, u
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png">
 
+* `Instructions`: This canvas contains the instructions to complete the flow, including `Verification Uri` and `User Code` components. This is deactivated by the script when a result (successful or failed) has to be shown to end-user. 
+* `Verification Uri`: A text component to set the verification uri returned by Auth0 (usually it looks like `https://{your_auth0_domain}/activate`).
+* `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
+* `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
+
 ## Auth Manager
 
 The `AuthManager` is a singleton instance that exposes the following properties:
