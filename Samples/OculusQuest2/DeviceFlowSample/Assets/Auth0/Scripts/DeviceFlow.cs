@@ -12,10 +12,6 @@ namespace Auth0
 {
     public class DeviceFlow : MonoBehaviour
     {
-        [Header("Auth Params")]
-        public string Scope = "openid profile offline_access";
-        public string Audience;
-        
         [Header("UI Components")]
         public Canvas Instructions;
         public Text VerificationUri;
@@ -34,7 +30,9 @@ namespace Auth0
                 this.ResetInstructions();
 
                 var auth0 = AuthManager.Instance.Auth0;
-                var deviceCodeResp = await auth0.StartDeviceFlow(this.Scope, this.Audience);
+                var scope = AuthManager.Instance.Settings.Scope;
+                var audience = AuthManager.Instance.Settings.Audience;
+                var deviceCodeResp = await auth0.StartDeviceFlow(scope, audience);
 
                 this.VerificationUri.text = deviceCodeResp.VerificationUri;
                 this.UserCode.text = deviceCodeResp.UserCode;
@@ -47,10 +45,10 @@ namespace Auth0
                     ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResp.ExpiresIn),
                     RefreshToken = tokenResp.RefreshToken,
                     IdToken = tokenResp.IdToken,
-                    Scope = this.Scope,
+                    Scope = scope,
                 });
 
-                var callUserInfo = this.Scope.Split(' ').Any("openid".Contains);
+                var callUserInfo = scope.Split(' ').Any("openid".Contains);
                 var userInfo = callUserInfo ? await auth0.GetUserInfo(tokenResp.AccessToken) : null;
                 if (userInfo != null && !String.IsNullOrEmpty(userInfo.FullName)) {
                     this.ShowResult(String.Format("Hello {0}, you're all set!", userInfo.FullName));
