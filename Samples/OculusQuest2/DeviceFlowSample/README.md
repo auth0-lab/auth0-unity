@@ -5,6 +5,17 @@
 2. Import [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) asset.
 
 ## Setup
-1. Open the `Assets/Auth0/Scenes/Preload` scene, and set your Auth0 `Domain` and `Client Id` in the `AuthManager` properties, located in the `Inspector` tab.
+1. Go to `Assets/Auth0/Scripts/Runtime/AuthManager.cs` and set `Domain` and `ClientId` settings:
+
+```cs
+this.Settings = new Settings
+{
+    Domain = "", // "acme.auth0.com"
+    ClientId = "",
+    Scope = "openid profile offline_access",
+    Audience = ""
+};
+```
+
 2. Connect your `Oculus Quest 2` to your computer through a USB cable.
 3. Deploy the app from `File -> Build and Run`.
