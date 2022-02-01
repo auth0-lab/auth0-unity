@@ -90,3 +90,7 @@ public void SignOutBtn()
     this.UpdateLoginStatus();
 }
 ```
+
+## Beta Terms of Service
+
+This SDK is an Auth0 Lab experiment and is subject to our [Beta Terms of Service](https://cdn.auth0.com/website/legal/terms/beta-service-terms-11-18-19.pdf?_ga=2.178667751.270615629.1602600152-1580183395.1598368988). The code is released "as-is" and may or may not be updated in the future. By using it, you agree to the Beta Terms. Bug fixes, and issue callouts are welcome, but may not be merged in a timely manner.
