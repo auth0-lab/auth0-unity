@@ -2,7 +2,7 @@
 
 ## Requirements
 1. Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
-2. [Unity Editor 2020.3.26f1](https://unity3d.com/get-unity/download/archive).
+2. Unity Editor 2020.3.26f1
 3. Import [Oculus Integration v37](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) from Unity Asset Store.
 
 ## Setup
