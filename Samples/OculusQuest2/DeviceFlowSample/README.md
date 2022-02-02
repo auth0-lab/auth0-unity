@@ -2,7 +2,8 @@
 
 ## Requirements
 1. Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
-2. Import [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) asset.
+2. [Unity 2020.3.26f1](https://unity3d.com/get-unity/download/archive).
+3. Import [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) asset.
 
 ## Setup
 1. Go to `Assets/Auth0/Runtime/AuthManager.cs` and set `Domain` and `ClientId` settings:
