@@ -88,16 +88,9 @@ namespace Auth0.Api.Credentials
             try
             {
                 var tokenResp = await this.auth0.ExchangeRefreshToken(refreshToken);
-                var renewedCredentials = new Credentials
-                {
-                    AccessToken = tokenResp.AccessToken,
-                    ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResp.ExpiresIn),
-                    RefreshToken = tokenResp.RefreshToken,
-                    IdToken = tokenResp.IdToken,
-                    Scope = scope,
-                };
+                var renewedCredentials = tokenResp.ToCredentials(scope);
 
-                this.SaveCredentials(renewedCredentials);
+                SaveCredentials(renewedCredentials);
                 return renewedCredentials;
             }
             catch (Exception ex)
@@ -106,7 +99,12 @@ namespace Auth0.Api.Credentials
             }
         }
 
-        public override void SaveCredentials(Credentials credentials)
+        public override void SaveCredentials(AccessTokenResponse tokenResponse, string scope)
+        {
+            SaveCredentials(tokenResponse.ToCredentials(scope));
+        }
+
+        private static void SaveCredentials(Credentials credentials)
         {
             PlayerPrefs.SetString(KEY_ACCESS_TOKEN, credentials.AccessToken);
             PlayerPrefs.SetString(KEY_REFRESH_TOKEN, credentials.RefreshToken);
@@ -114,14 +112,20 @@ namespace Auth0.Api.Credentials
             PlayerPrefs.SetString(KEY_EXPIRES_AT, credentials.ExpiresAt.ToString(CultureInfo.InvariantCulture));
             PlayerPrefs.SetString(KEY_SCOPE, credentials.Scope);
         }
+    }
 
-        public override void SaveCredentials(AccessTokenResponse tokenResponse, string scope)
+    public static class CredentialsExtensions
+    {
+        public static Credentials ToCredentials(this AccessTokenResponse tokenResponse, string scope)
         {
-            PlayerPrefs.SetString(KEY_ACCESS_TOKEN, tokenResponse.AccessToken);
-            PlayerPrefs.SetString(KEY_REFRESH_TOKEN, tokenResponse.RefreshToken);
-            PlayerPrefs.SetString(KEY_ID_TOKEN, tokenResponse.IdToken);
-            PlayerPrefs.SetString(KEY_EXPIRES_AT, DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn).ToString(CultureInfo.InvariantCulture));
-            PlayerPrefs.SetString(KEY_SCOPE, scope);
+            return new Credentials
+            {
+                AccessToken = tokenResponse.AccessToken,
+                ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn),
+                RefreshToken = tokenResponse.RefreshToken,
+                IdToken = tokenResponse.IdToken,
+                Scope = scope,
+            };
         }
     }
 }
