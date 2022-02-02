@@ -9,7 +9,7 @@ An experimental Auth0 SDK for Unity platform.
 ## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.2.unitypackage) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.3.unitypackage) and import it in your proyect as a `Custom Package`.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
@@ -53,7 +53,7 @@ The `AuthManager` is a singleton instance that exposes the following properties:
     - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
     - `void ClearCredentials()`: Remove the stored credentials. Useful to log the user out of your app.
     - `Task<Credentials> GetCredentials()`: If the access token has expired, the manager automatically uses the refresh token and renews the credentials. New credentials are be stored for future access.
-    - `void SaveCredentials(Credentials)`: Save the credentials (for example, the ones obtained during device flow).
+    - `void SaveCredentials(AccessTokenResponse, scope)`: Save the credentials (useful to save the ones obtained during token exchange).
 
 ### Common scenarios
 
