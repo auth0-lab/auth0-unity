@@ -4,22 +4,11 @@ using System;
 
 namespace Auth0
 {
-    public class AuthManager
+    public sealed class AuthManager
     {
-        private static AuthManager instance;
+        private static readonly Lazy<AuthManager> instance = new Lazy<AuthManager>(() => new AuthManager());
 
-        public static AuthManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new AuthManager();
-                }
-
-                return instance;
-            }
-        }
+        public static AuthManager Instance => instance.Value;
 
         public Settings Settings { get; private set; }
 
