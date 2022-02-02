@@ -53,7 +53,7 @@ The `AuthManager` is a singleton instance that exposes the following properties:
     - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
     - `void ClearCredentials()`: Remove the stored credentials. Useful to log the user out of your app.
     - `Task<Credentials> GetCredentials()`: If the access token has expired, the manager automatically uses the refresh token and renews the credentials. New credentials are be stored for future access.
-    - `void SaveCredentials(Credentials)`: Save the credentials (for example, the ones obtained during device flow).
+    - `void SaveCredentials(AccessTokenResponse, scope)`: Save the credentials (useful to save the ones obtained during token exchange).
 
 ### Common scenarios
 
