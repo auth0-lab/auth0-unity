@@ -13,6 +13,12 @@ An experimental Auth0 SDK for Unity platform.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
+If after import, got the following error:
+
+> Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform.
+
+Please, go to `Window -> Package Manager -> Packages: In Project` and update `Version Control` to `v1.15.12` (or later).
+
 ## Device Flow
 
 Before you start you need to configure your Device flow on your Auth0 tenant. If you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites)
