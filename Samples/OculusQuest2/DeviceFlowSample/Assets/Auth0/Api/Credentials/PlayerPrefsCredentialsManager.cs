@@ -1,3 +1,4 @@
+using Auth0.AuthenticationApi.Models;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -112,6 +113,15 @@ namespace Auth0.Api.Credentials
             PlayerPrefs.SetString(KEY_ID_TOKEN, credentials.IdToken);
             PlayerPrefs.SetString(KEY_EXPIRES_AT, credentials.ExpiresAt.ToString(CultureInfo.InvariantCulture));
             PlayerPrefs.SetString(KEY_SCOPE, credentials.Scope);
+        }
+
+        public override void SaveCredentials(AccessTokenResponse tokenResponse, string scope)
+        {
+            PlayerPrefs.SetString(KEY_ACCESS_TOKEN, tokenResponse.AccessToken);
+            PlayerPrefs.SetString(KEY_REFRESH_TOKEN, tokenResponse.RefreshToken);
+            PlayerPrefs.SetString(KEY_ID_TOKEN, tokenResponse.IdToken);
+            PlayerPrefs.SetString(KEY_EXPIRES_AT, DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn).ToString(CultureInfo.InvariantCulture));
+            PlayerPrefs.SetString(KEY_SCOPE, scope);
         }
     }
 }

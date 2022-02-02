@@ -38,15 +38,7 @@ namespace Auth0
                 this.UserCode.text = deviceCodeResp.UserCode;
 
                 var tokenResp = await auth0.ExchangeDeviceCode(deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
-
-                AuthManager.Instance.Credentials.SaveCredentials(new Credentials
-                {
-                    AccessToken = tokenResp.AccessToken,
-                    ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResp.ExpiresIn),
-                    RefreshToken = tokenResp.RefreshToken,
-                    IdToken = tokenResp.IdToken,
-                    Scope = scope,
-                });
+                AuthManager.Instance.Credentials.SaveCredentials(tokenResp, scope);
 
                 var callUserInfo = scope.Split(' ').Any("openid".Contains);
                 var userInfo = callUserInfo ? await auth0.GetUserInfo(tokenResp.AccessToken) : null;

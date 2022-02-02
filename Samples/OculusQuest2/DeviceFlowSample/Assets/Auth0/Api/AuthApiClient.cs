@@ -1,7 +1,7 @@
+using Auth0.Api.Tokens;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
-using Auth0.Api.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -57,7 +57,7 @@ namespace Auth0.Api
                 }
             } while((apiError != null && apiError.ApiError.ErrorCode != "authorization_pending") || response == null);
             
-            if (response == null)
+            if (apiError != null)
             {
                 throw apiError;    
             }
