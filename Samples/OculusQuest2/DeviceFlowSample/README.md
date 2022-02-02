@@ -5,7 +5,7 @@
 2. Import [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) asset.
 
 ## Setup
-1. Go to `Assets/Auth0/Scripts/Runtime/AuthManager.cs` and set `Domain` and `ClientId` settings:
+1. Go to `Assets/Auth0/Runtime/AuthManager.cs` and set `Domain` and `ClientId` settings:
 
 ```cs
 this.Settings = new Settings
