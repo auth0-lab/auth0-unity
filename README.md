@@ -15,7 +15,9 @@ An experimental Auth0 SDK for Unity platform.
 
 ## Device Flow
 
-1. Go to `Assets/Auth0/Runtime/AuthManager.cs` and set the following settings:
+Before you start you need to configure your Device flow on your Auth0 tenant. I you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites)
+
+1. Now, go to `Assets/Auth0/Runtime/AuthManager.cs` and set the following settings:
 
 ```cs
 // TODO: use your favorite strategy to load the Auth0 configuration (ie, RemoteSettings)
