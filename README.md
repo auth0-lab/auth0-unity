@@ -13,7 +13,7 @@ An experimental Auth0 SDK for Unity platform.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
-> If after import, you got the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error, please, go to `Window -> Package Manager -> Packages: In Project` and update `Version Control` to `v1.15.12` (or later).
+> If after import, you got the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error, please, go to `Window -> Package Manager -> Packages: In Project` and update `Version Control` to `v1.15.12` (or later), or remove it, if you aren't using it.
 
 ## Device Flow
 
