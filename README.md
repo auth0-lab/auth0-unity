@@ -4,12 +4,12 @@ An experimental Auth0 SDK for Unity platform.
 ## Requirements
 
 * Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
-* Unity 2020.x (or later)
+* Unity 2020.x (or later).
 
 ## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.1.unitypackage) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.2.unitypackage) and import it in your proyect as a `Custom Package`.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
@@ -35,9 +35,14 @@ this.Settings = new Settings
 
 <img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png">
 
-Alternativelly, if you don't want to use this prefab to show verification uri, user code and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
+Alternativelly, if you don't want to use this prefab to show instructions (verification uri, user code) and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png">
+
+* `Instructions`: This canvas contains the instructions to complete the flow, including `Verification Uri` and `User Code` components. This is deactivated by the script when a result (successful or failed) has to be shown to end-user. 
+* `Verification Uri`: A text component to set the verification uri returned by Auth0 (usually it looks like `https://{your_auth0_domain}/activate`).
+* `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
+* `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
 
 ## Auth Manager
 
@@ -85,3 +90,7 @@ public void SignOutBtn()
     this.UpdateLoginStatus();
 }
 ```
+
+## Beta Terms of Service
+
+This SDK is an Auth0 Lab experiment and is subject to our [Beta Terms of Service](https://cdn.auth0.com/website/legal/terms/beta-service-terms-11-18-19.pdf?_ga=2.178667751.270615629.1602600152-1580183395.1598368988). The code is released "as-is" and may or may not be updated in the future. By using it, you agree to the Beta Terms. Bug fixes, and issue callouts are welcome, but may not be merged in a timely manner.
