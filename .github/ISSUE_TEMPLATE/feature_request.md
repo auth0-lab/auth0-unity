@@ -8,7 +8,7 @@ assignees: ''
 ---
 **Please do not report security vulnerabilities here**. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
-**Thank you in advance for helping us to improve this library!** Your attention to detail here is greatly appreciated and will help us respond as quickly as possible. For general support or usage questions, join us over in the Auth0Lab community at [discord.gg/XbQpZSF2Ys](discord.gg/XbQpZSF2Ys) and post your question there in the correct channel. Finally, to avoid duplicates, please search existing Issues before submitting one here.
+**Thank you in advance for helping us to improve this library!** Your attention to detail here is greatly appreciated and will help us respond as quickly as possible. For general support or usage questions, join us over in the Auth0Lab community at [discord.gg/XbQpZSF2Ys](https://discord.gg/XbQpZSF2Ys) and post your question there in the correct channel. Finally, to avoid duplicates, please search existing Issues before submitting one here.
 
 By submitting an Issue to this repository, you agree to the terms within the [Auth0 Code of Conduct](https://github.com/auth0/open-source-template/blob/master/CODE-OF-CONDUCT.md).
 
