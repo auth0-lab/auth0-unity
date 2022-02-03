@@ -50,7 +50,7 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request.
 
 ### Have a question or problem?
 
-Please do not open issues for general support or usage questions. Instead, join us over in the Auth0Lab community at [discord.gg/XbQpZSF2Ys](discord.gg/XbQpZSF2Ys) and post your question there in the correct channel.
+Please do not open issues for general support or usage questions. Instead, join us over in the Auth0Lab community at [discord.gg/XbQpZSF2Ys](https://discord.gg/XbQpZSF2Ys) and post your question there in the correct channel.
 
 ### Vulnerability Reporting
 
