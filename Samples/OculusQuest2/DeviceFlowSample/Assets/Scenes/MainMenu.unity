@@ -1682,8 +1682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8c5829178cd4ece998db47c1e544d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scope: openid profile offline_access
-  Audience: 
   Instructions: {fileID: 0}
   VerificationUri: {fileID: 0}
   UserCode: {fileID: 0}

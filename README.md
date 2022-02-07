@@ -55,7 +55,9 @@ Alternativelly, if you don't want to use this prefab to show instructions (verif
 
 The `AuthManager` is a singleton instance that exposes the following properties:
 
-* `AuthManager.Instance.Auth0`: Auth0 Authentication API client.
+* `AuthManager.Instance.Auth0`:
+    - Exposes an instance of the [.NET client library for Auth0 Authentication API](https://auth0.github.io/auth0.net/api/Auth0.AuthenticationApi.AuthenticationApiClient.html#methods).
+    - Also includes a Device Flow wrapper to poll the token endpoint to request a token (`Task<AccessTokenResponse> ExchangeDeviceCodeAsync(string clientId, string deviceCode, int retryInterval`).
 * `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance.
     - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
     - `void ClearCredentials()`: Remove the stored credentials. Useful to log the user out of your app.

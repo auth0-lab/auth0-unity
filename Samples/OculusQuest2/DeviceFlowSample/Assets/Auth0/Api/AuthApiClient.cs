@@ -4,41 +4,28 @@ using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Auth0.Api
 {
-    public class AuthApiClient {
-        private readonly string clientId;
-        private readonly AuthenticationApiClient client;
+    public class AuthApiClient : AuthenticationApiClient {
         private static readonly IdTokenValidator idTokenValidator = new IdTokenValidator();
         private readonly TimeSpan idTokenValidationLeeway = TimeSpan.FromMinutes(1);
 
-        public AuthApiClient(string domain, string clientId)
+        public AuthApiClient(string domain) : base(new Uri(String.Format("https://{0}", domain)))
         {
-            this.clientId = clientId;
-            this.client = new AuthenticationApiClient(new Uri(String.Format("https://{0}", domain)));
         }
 
-        public Task<DeviceCodeResponse> StartDeviceFlow(string scope = "openid profile offline_access", string audience = "")
-        {
-            return this.client.StartDeviceFlowAsync(new DeviceCodeRequest
-            {
-                ClientId = this.clientId,
-                Scope = scope,
-                Audience = audience
-            });
-        }
-
-        public async Task<AccessTokenResponse> ExchangeDeviceCode(string deviceCode, int retryInterval)
+        public async Task<AccessTokenResponse> ExchangeDeviceCodeAsync(string clientId, string deviceCode, int retryInterval, CancellationToken cancellationToken = default)
         {
             AccessTokenResponse response = null;
             ErrorApiException apiError;
 
             var request = new DeviceCodeTokenRequest
             {
-                ClientId = this.clientId,
+                ClientId = clientId,
                 DeviceCode = deviceCode
             };
 
@@ -49,7 +36,7 @@ namespace Auth0.Api
 
                 try
                 {
-                    response = await this.client.GetTokenAsync(request);
+                    response = await this.GetTokenAsync(request, cancellationToken);
                 }
                 catch (ErrorApiException ex) 
                 {
@@ -65,30 +52,16 @@ namespace Auth0.Api
             if (!string.IsNullOrWhiteSpace(response.IdToken))
             {
                 // GetTokenAsync(DeviceCodeTokenRequest) isn't validating the id_token
-                await AssertIdTokenValid(response.IdToken, this.clientId, JwtSignatureAlgorithm.RS256, string.Empty).ConfigureAwait(false);
+                // See https://github.com/auth0/auth0.net/blob/8973a9d0962c359e38543eea02b8feeef809651d/src/Auth0.AuthenticationApi/AuthenticationApiClient.cs#L308
+                await AssertIdTokenValid(response.IdToken, clientId, JwtSignatureAlgorithm.RS256, string.Empty).ConfigureAwait(false);
             }
 
             return response;
         }
 
-        public Task<AccessTokenResponse> ExchangeRefreshToken(string refreshToken)
-        {
-            // GetTokenAsync(RefreshTokenRequest) is already validating the id_token
-            return this.client.GetTokenAsync(new RefreshTokenRequest
-            {
-                ClientId = this.clientId,
-                RefreshToken = refreshToken
-            });
-        }
-
-        public Task<UserInfo> GetUserInfo(string accessToken)
-        {
-            return this.client.GetUserInfoAsync(accessToken);
-        } 
-
         private Task AssertIdTokenValid(string idToken, string audience, JwtSignatureAlgorithm algorithm, string clientSecret, string organization = null)
         {
-            var requirements = new IdTokenRequirements(algorithm, this.client.BaseUri.AbsoluteUri, audience, idTokenValidationLeeway, null, organization);
+            var requirements = new IdTokenRequirements(algorithm, this.BaseUri.AbsoluteUri, audience, idTokenValidationLeeway, null, organization);
             return idTokenValidator.Assert(requirements, idToken, clientSecret);
         }
     }

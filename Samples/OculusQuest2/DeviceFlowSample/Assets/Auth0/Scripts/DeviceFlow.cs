@@ -30,18 +30,24 @@ namespace Auth0
                 this.ResetInstructions();
 
                 var auth0 = AuthManager.Instance.Auth0;
+                var clientId = AuthManager.Instance.Settings.ClientId;
                 var scope = AuthManager.Instance.Settings.Scope;
                 var audience = AuthManager.Instance.Settings.Audience;
-                var deviceCodeResp = await auth0.StartDeviceFlow(scope, audience);
+                var deviceCodeResp = await auth0.StartDeviceFlowAsync(new DeviceCodeRequest
+                {
+                    ClientId = clientId,
+                    Scope = scope,
+                    Audience = audience
+                });
 
                 this.VerificationUri.text = deviceCodeResp.VerificationUri;
                 this.UserCode.text = deviceCodeResp.UserCode;
 
-                var tokenResp = await auth0.ExchangeDeviceCode(deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
+                var tokenResp = await auth0.ExchangeDeviceCodeAsync(clientId, deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
                 AuthManager.Instance.Credentials.SaveCredentials(tokenResp, scope);
 
                 var callUserInfo = scope.Split(' ').Any("openid".Contains);
-                var userInfo = callUserInfo ? await auth0.GetUserInfo(tokenResp.AccessToken) : null;
+                var userInfo = callUserInfo ? await auth0.GetUserInfoAsync(tokenResp.AccessToken) : null;
                 if (userInfo != null && !String.IsNullOrEmpty(userInfo.FullName)) {
                     this.ShowResult(String.Format("Hello {0}, you're all set!", userInfo.FullName));
                 } else {

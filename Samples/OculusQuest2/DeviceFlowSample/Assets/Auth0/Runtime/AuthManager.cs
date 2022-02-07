@@ -32,13 +32,13 @@ namespace Auth0
                 throw new InvalidOperationException("'Domain', 'ClientId' and 'Scope' settings are mandatory.");
             }
 
-            this.Auth0 = new AuthApiClient(this.Settings.Domain, this.Settings.ClientId);
+            this.Auth0 = new AuthApiClient(this.Settings.Domain);
 
             // IMPORTANT! The PlayerPrefsCredentialsManager will store the Access Token, Refresh Token and ID Token
             // in `/data/data/pkg-name/shared_prefs/pkg-name.v2.playerprefs.xml` as plain-text.
             // Consider implementing a different credentials manager (which inherits from BaseCredentialsManager class)
             // to encrypt those values before persist them.
-            this.Credentials = new PlayerPrefsCredentialsManager(this.Auth0);
+            this.Credentials = new PlayerPrefsCredentialsManager(this.Auth0, this.Settings.ClientId);
         }
     }
 }

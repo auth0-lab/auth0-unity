@@ -16,9 +16,12 @@ namespace Auth0.Api.Credentials
         
         private readonly AuthApiClient auth0;
 
-        public PlayerPrefsCredentialsManager(AuthApiClient authApiClient)
+        private readonly string clientId;
+
+        public PlayerPrefsCredentialsManager(AuthApiClient authApiClient, string clientId)
         {
             this.auth0 = authApiClient;
+            this.clientId = clientId;
         }
 
         public override bool HasValidCredentials()
@@ -87,7 +90,11 @@ namespace Auth0.Api.Credentials
 
             try
             {
-                var tokenResp = await this.auth0.ExchangeRefreshToken(refreshToken);
+                var tokenResp = await this.auth0.GetTokenAsync(new RefreshTokenRequest
+                {
+                    ClientId = this.clientId,
+                    RefreshToken = refreshToken
+                });
                 var renewedCredentials = tokenResp.ToCredentials(scope);
 
                 SaveCredentials(renewedCredentials);
