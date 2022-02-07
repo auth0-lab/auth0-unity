@@ -1,4 +1,7 @@
 # auth0-unity-sdk
+
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git?ref=badge_shield)
+
 An experimental Auth0 SDK for Unity platform.
 
 ## Requirements
