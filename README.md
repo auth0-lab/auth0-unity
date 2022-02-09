@@ -77,7 +77,7 @@ public void UpdateLoginStatus()
     {
         // Show a welcome message and the SignOut button
         var creds = await AuthManager.Instance.credentials.GetCredentials();
-        var userInfo = await AuthManager.Instance.Auth0.GetUserInfo(creds.AccessToken);
+        var userInfo = await AuthManager.Instance.Auth0.GetUserInfoAsync(creds.AccessToken);
 
         welcomeText.text = String.Format("Welcome back {0}!", userInfo.FullName);
         signOutButton.SetActive(true);
