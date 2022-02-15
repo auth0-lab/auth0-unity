@@ -57,7 +57,7 @@ namespace Auth0
             catch (Exception ex)
             {
                 Debug.LogError(ex);
-                this.ShowResult("An unexpected error has occurred. Please try again, and if the problem persists, contact support for further assistance.");
+                this.ShowResult("⚠ An unexpected error has occurred. Please try again, and if the problem persists, contact support for further assistance.");
             }
         }
 
