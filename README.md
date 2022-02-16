@@ -40,7 +40,7 @@ this.Settings = new Settings
 
 Before start you need to configure the device flow on your Auth0 tenant. If you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
 
-### Basic
+### Basic prefab
 
 Include the `Assets/Auth0/Prefabs/DeviceFlow` prefab in the section/canvas that you consider.
 
@@ -55,9 +55,9 @@ Alternativelly, if you don't want to use this prefab to show instructions (verif
 * `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
 * `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
 
-#### TBC
+### Pre-defined scenes
 
-_(Add instructions explaining how to use the pre-defined scene)_
+_(TODO: Add instructions explaining how to use the Auth0sceneSample and WhiteLabel2 scenes)_
 
 ## Auth Manager
 
