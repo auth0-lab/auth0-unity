@@ -8,23 +8,19 @@ Unity platform toolkit for consuming the Auth0 Authentication API.
 
 ## Requirements
 
-* Take a look to the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites) section.
 * Unity 2020.x (or later).
+* In order to use one of the pre-defined assets, you need to import [Oculus Integration v37](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) from [Unity Asset Store](https://assetstore.unity.com/).
 
 ## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.0.4.unitypackage) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.1.0.unitypackage) and import it in your proyect as a `Custom Package`.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
 > If after import, you got the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error, it could be caused by an old version of the `Version Control` package, which is installed by default by some Unity project templates. Please, go to `Window -> Package Manager -> Packages: In Project` and update it to `v1.15.12` (or later), or just remove it if you have no plans to use it.
 
-## Device Flow
-
-Before you start you need to configure the Device flow on your Auth0 tenant. If you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
-
-1. Now, go to `Assets/Auth0/Runtime/AuthManager.cs` and set the following settings:
+Then, go to `Assets/Auth0/Runtime/AuthManager.cs` and to set your Auth0 settings:
 
 ```cs
 // TODO: use your favorite strategy to load the Auth0 configuration (ie, RemoteSettings)
@@ -40,7 +36,13 @@ this.Settings = new Settings
 * `Domain`, `ClientId` and `Scope` are mandatory.
 * When authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used by `AuthManager` to request a new user token, without forcing the user to perform authentication again.
 
-2. Include the `Assets/Auth0/Prefabs/DeviceFlow` prefab in the section/canvas that you consider.
+## Device Flow
+
+Before start you need to configure the device flow on your Auth0 tenant. If you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
+
+### Basic
+
+Include the `Assets/Auth0/Prefabs/DeviceFlow` prefab in the section/canvas that you consider.
 
 <img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png">
 
@@ -52,6 +54,10 @@ Alternativelly, if you don't want to use this prefab to show instructions (verif
 * `Verification Uri`: A text component to set the verification uri returned by Auth0 (usually it looks like `https://{your_auth0_domain}/activate`).
 * `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
 * `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
+
+#### TBC
+
+_(Add instructions explaining how to use the pre-defined scene)_
 
 ## Auth Manager
 
