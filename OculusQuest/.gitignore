@@ -6,6 +6,7 @@
 [Ll]ogs/
 Assets/AssetStoreTools*
 [Aa]ssets/[Oo]culus
+[Aa]ssets/[Oo]culus*
 UserSettings/
 
 # Ignore these Oculus files because they store your secret App ID
@@ -47,6 +48,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+!Auth0UnitySDK-v*.unitypackage
 
 # macos
 .DS_Store
