@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainSectionController : MonoBehaviour
+public class SignInMain : MonoBehaviour
 {
     private void OnEnable()
     {
@@ -14,11 +14,6 @@ public class MainSectionController : MonoBehaviour
     {
         AuthManager.Instance.Credentials.ClearCredentials();
         this.UpdateLoginStatus();
-    }
-
-    public void ExitBtn()
-    {
-        Application.Quit();
     }
 
     private void UpdateLoginStatus()
