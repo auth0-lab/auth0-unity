@@ -72,14 +72,7 @@ namespace Auth0.Api.Credentials
             var expiresAt = DateTime.Parse(expiresAtStr, CultureInfo.InvariantCulture);
             var accessTokenExpired = expiresAt.CompareTo(DateTime.UtcNow) <= 0;
             if (!accessTokenExpired) {
-                return new Credentials
-                {
-                    AccessToken = accessToken,
-                    ExpiresAt = expiresAt,
-                    RefreshToken = refreshToken,
-                    IdToken = idToken,
-                    Scope = scope
-                };
+                return new Credentials(accessToken, expiresAt, refreshToken, idToken, scope);
             }
 
             // Access token is expired, use refresh token to request a new one.
@@ -125,14 +118,13 @@ namespace Auth0.Api.Credentials
     {
         public static Credentials ToCredentials(this AccessTokenResponse tokenResponse, string scope)
         {
-            return new Credentials
-            {
-                AccessToken = tokenResponse.AccessToken,
-                ExpiresAt = DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn),
-                RefreshToken = tokenResponse.RefreshToken,
-                IdToken = tokenResponse.IdToken,
-                Scope = scope,
-            };
+            return new Credentials(
+                tokenResponse.AccessToken,
+                DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn),
+                tokenResponse.RefreshToken,
+                tokenResponse.IdToken,
+                scope
+            );
         }
     }
 }

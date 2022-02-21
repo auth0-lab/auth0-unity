@@ -720,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SignInPrompt
       objectReference: {fileID: 0}
+    - target: {fileID: 8237440558756236989, guid: 648ff535abe4a4a9f836f82d5d0ec656, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 648ff535abe4a4a9f836f82d5d0ec656, type: 3}
 --- !u!1 &1724849172145216358 stripped
