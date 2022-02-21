@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.08435114, g: 0.07526974, b: 0.3470114, a: 1}
+  m_IndirectSpecularColor: {r: 0.08440544, g: 0.07516791, b: 0.34714016, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &52805114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 52805113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a992e49b732d14a4db62582e39372eae, type: 3}
+  m_Script: {fileID: 11500000, guid: 65b2170bbe06a42a08e69a74fd025927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &117599544
@@ -356,10 +356,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 52805115}
-        m_TargetAssemblyTypeName: MainSectionController, Assembly-CSharp
-        m_MethodName: ExitBtn
-        m_Mode: 1
+      - m_Target: {fileID: 1496942850}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1052,7 +1052,7 @@ RectTransform:
   m_Children:
   - {fileID: 392545734}
   m_Father: {fileID: 1765829886}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1443,7 +1443,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 987e4e47dae6f41dca193d106b133a46, type: 3}
       propertyPath: m_Name
-      value: ProgressCircle1
+      value: ProgressCircle
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 987e4e47dae6f41dca193d106b133a46, type: 3}
       propertyPath: m_RootOrder
@@ -1622,7 +1622,7 @@ RectTransform:
   m_LocalScale: {x: 0.7999999, y: 0.7999999, z: 0.7999999}
   m_Children: []
   m_Father: {fileID: 1765829886}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2163,7 +2163,7 @@ RectTransform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1765829886}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2273,7 +2273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331474976166663216, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7331474976166663216, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2368,12 +2368,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 45fd9a06b650b403e9042c21df9b7c16, type: 3}
     - target: {fileID: 7331474976208060872, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331474976208060872, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7331474976208060872, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7331474976208060873, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2437,7 +2441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331474976815944655, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7331474977319026816, guid: 58905f60d85a9463287441bea0b4168c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2571,7 +2575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1765829886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2584,13 +2588,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1372507594}
-  - {fileID: 1853357762}
   - {fileID: 1034851091}
   - {fileID: 1633827546}
+  - {fileID: 1853357762}
   - {fileID: 319325480}
   - {fileID: 567975803}
-  - {fileID: 643474448}
   - {fileID: 1730119192}
+  - {fileID: 643474448}
   m_Father: {fileID: 1496942854}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2704,7 +2708,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1765829886}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
