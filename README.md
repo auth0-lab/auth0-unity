@@ -14,7 +14,7 @@ Unity platform toolkit for consuming the Auth0 Authentication API.
 ## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.1.0.unitypackage) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it in your proyect as a `Custom Package`.
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
 
@@ -35,18 +35,33 @@ this.Settings = new Settings
 
 * `Domain`, `ClientId` and `Scope` are mandatory.
 * When authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used by `AuthManager` to request a new user token, without forcing the user to perform authentication again.
+* `Audience` is required when you need an access token to call to your API.
 
 ## Device Flow
 
-Before start you need to configure the device flow on your Auth0 tenant. If you didn't do this yet check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
+Before start you need to configure the device flow on your Auth0 tenant. If you didn't do this yet, check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
 
-### Basic prefab
+### Prefabs
 
-Include the `Assets/Auth0/Prefabs/DeviceFlow` prefab in the section/canvas that you consider.
+#### DeviceFlowRaw
+
+Include the `Assets/Auth0/Prefabs/DeviceFlowRaw` prefab into the section/canvas that you consider.
 
 <img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png">
 
-Alternativelly, if you don't want to use this prefab to show instructions (verification uri, user code) and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
+#### DeviceFlowPrompt
+
+Include the `Assets/Auth0/Prefabs/DeviceFlowPrompt` prefab in your scene and activate it when you need it.
+
+<img width="400" src="https://user-images.githubusercontent.com/178506/154989639-baabe605-49e6-4e53-82a0-e0999466e4e7.png">
+
+### Scenes
+
+The package includes some sample scenes (`Assets/Auth0/Scenes`) to show how to use the described prefabs.
+
+### Scripts
+
+If you don't want to use the included prefabs to show instructions (verification uri, user code) and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
 
 <img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png">
 
@@ -54,10 +69,6 @@ Alternativelly, if you don't want to use this prefab to show instructions (verif
 * `Verification Uri`: A text component to set the verification uri returned by Auth0 (usually it looks like `https://{your_auth0_domain}/activate`).
 * `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
 * `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
-
-### Pre-defined scenes
-
-_(TODO: Add instructions explaining how to use the Auth0sceneSample and WhiteLabel2 scenes)_
 
 ## Auth Manager
 
@@ -69,8 +80,14 @@ The `AuthManager` is a singleton instance that exposes the following properties:
 * `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance.
     - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
     - `void ClearCredentials()`: Remove the stored credentials. Useful to log the user out of your app.
-    - `Task<Credentials> GetCredentials()`: If the access token has expired, the manager automatically uses the refresh token and renews the credentials. New credentials are be stored for future access.
     - `void SaveCredentials(AccessTokenResponse, scope)`: Save the credentials obtained during authentication in the manager.
+    - `Task<Credentials> GetCredentials()`: If the access token has expired, the manager automatically uses the refresh token and renews the credentials. New credentials are be stored for future access. Credentials contains the following properties:
+      - `AccessToken (string)`: Access token for specified API (audience).
+      - `ExpiresAt (DateTime)`: Expiration date of the Access Token.
+      - `Scope (string)`: Access Token's granted scope.
+      - `RefreshToken (string)`: Refresh Token that can be used to request new tokens without signing in again.
+      - `IdToken (string)`: Identifier Token with user information.
+      - `User (UserInfo)`: Decoded IdToken.
 
 ### Common scenarios
 
