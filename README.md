@@ -16,7 +16,7 @@ Unity platform toolkit for consuming the Auth0 Authentication API.
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
 * **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it in your proyect as a `Custom Package`.
 
-<img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png">
+<p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png"></p>
 
 > If after import, you got the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error, it could be caused by an old version of the `Version Control` package, which is installed by default by some Unity project templates. Please, go to `Window -> Package Manager -> Packages: In Project` and update it to `v1.15.12` (or later), or just remove it if you have no plans to use it.
 
@@ -47,13 +47,13 @@ Before start you need to configure the device flow on your Auth0 tenant. If you 
 
 Include the `Assets/Auth0/Prefabs/DeviceFlowRaw` prefab into the section/canvas that you consider.
 
-<img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png">
+<p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png"></p>
 
 #### DeviceFlowPrompt
 
 Include the `Assets/Auth0/Prefabs/DeviceFlowPrompt` prefab in your scene and activate it when you need it.
 
-<img width="400" src="https://user-images.githubusercontent.com/178506/154989639-baabe605-49e6-4e53-82a0-e0999466e4e7.png">
+<p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/154989639-baabe605-49e6-4e53-82a0-e0999466e4e7.png"></p>
 
 ### Scenes
 
@@ -63,7 +63,7 @@ The package includes some sample scenes (`Assets/Auth0/Scenes`) to show how to u
 
 If you don't want to use the included prefabs to show instructions (verification uri, user code) and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
 
-<img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png">
+<p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png"></p>
 
 * `Instructions`: This canvas contains the instructions to complete the flow, including `Verification Uri` and `User Code` components. This is deactivated by the script when a result (successful or failed) has to be shown to end-user. 
 * `Verification Uri`: A text component to set the verification uri returned by Auth0 (usually it looks like `https://{your_auth0_domain}/activate`).
