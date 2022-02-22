@@ -1,4 +1,4 @@
-# auth0-unity-sdk
+# Auth0 Unity SDK
 
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git?ref=badge_shield)
 
@@ -14,7 +14,7 @@ Unity platform toolkit for consuming the Auth0 Authentication API.
 ## Setup
 
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it in your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it into your proyect as a `Custom Package`.
 
 <p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png"></p>
 
@@ -35,11 +35,11 @@ this.Settings = new Settings
 
 * `Domain`, `ClientId` and `Scope` are mandatory.
 * When authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used by `AuthManager` to request a new user token, without forcing the user to perform authentication again.
-* `Audience` is required when you need an access token to call to your API.
+* `Audience` is required in case you need an access token to call to your API.
 
 ## Device Flow
 
-Before start you need to configure the device flow on your Auth0 tenant. If you didn't do this yet, check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
+Before start, check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
 
 ### Prefabs
 
