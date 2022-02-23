@@ -4,7 +4,7 @@
 
 Unity platform toolkit for consuming the Auth0 Authentication API.
 
-> :warning: This is an experimental library and has not had a complete security review. As we move towards general availability, please be aware that releases may contain breaking changes.
+> :warning: This is an experimental library and has not had a complete security review. As we we learn and iterate, please be aware that releases may contain breaking changes.
 
 ## Requirements
 
