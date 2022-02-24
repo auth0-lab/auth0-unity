@@ -2,25 +2,39 @@
 
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git?ref=badge_shield)
 
-Unity platform toolkit for consuming the Auth0 Authentication API.
+The Auth0 Unity SDK is an experimental platform toolkit that makes it easy to add sign in and other identity features to Unity applications, leveraging Auth0 Authentication API.
+Although the SDK can be used with any Unity application, this release emphasizes an exploration of the authentication experience in Virtual Reality (VR) applications.
 
 > :warning: This is an experimental library and has not had a complete security review. As we learn and iterate, please be aware that releases may contain breaking changes.
 
 ## Requirements
 
-* Unity 2020.x (or later).
-* In order to use one of the pre-defined assets, you need to import [Oculus Integration v37](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) from [Unity Asset Store](https://assetstore.unity.com/).
+* [Unity](https://unity.com/download) Editor 2020.x (or later).
+* The VR prefab included in Auth0 Unity SDK is optimized for Meta Oculus VR devices and requires you to to import [Oculus Integration v37](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) from [Unity Asset Store](https://assetstore.unity.com/).
 
 ## Setup
-
+The Auth0 Unity SDK is packaged and distributed as a Unity Asset Package. You have two options for including it in your project.
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
 * **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it into your proyect as a `Custom Package`.
 
 <p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png"></p>
 
-> If after import, you got the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error, it could be caused by an old version of the `Version Control` package, which is installed by default by some Unity project templates. Please, go to `Window -> Package Manager -> Packages: In Project` and update it to `v1.15.12` (or later), or just remove it if you have no plans to use it.
+> Warning. Some Unity project templates install an old version of the `Version Control` package. If that applies to your project, upon importing the Auth0 Unity SDK you will get the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error.
+This is easily fixed by updating the `Version Control` package (go to `Window -> Package Manager -> Packages: In Project` and update it to `v1.15.12` or later), or by simply removing it if your project doesn't actually need that package.
 
-Then, go to `Assets/Auth0/Runtime/AuthManager.cs` and to set your Auth0 settings:
+
+## Getting Started
+The Auth0 Unity SDK offers authentication functionality to Unity apps by wrapping the Auth0 .NET authentication SDK in prefabs that can be easily integrated in Unity scenes.
+Using the SDK requires completing two tasks: initializing the SDK with parameters connecting the app to an application registration in an Auth0 tenant, and instantiating one of the prefabs that will expose the authentication experience to the app user.
+
+### Initializing the Auth0 Unity SDK
+In order to use Auth0 to handle authentication, the application needs to be registered in an Auth0 tenant. If you don't have one, you can sign up [here](https://auth0.com/docs/get-started/auth0-overview/create-tenants).
+Registering an application in an Auth0 tenant is easy: you can simply follow the instructions [here](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
+> The Auth0 Unity SDK take care of all details, but if you are curious: the experience offered here implements the authentication flow leveraging the [OAuth device authorization grant](https://datatracker.ietf.org/doc/html/rfc8628) standard.
+
+Once you register your app, you need to use the corresponding information to initialize the SDK.
+That is done by completing some code in the core authentication script that comes with the SDK, located in `Assets/Auth0/Runtime/AuthManager.cs`.
+Once you opened the script, locate the following snippet.
 
 ```cs
 // TODO: use your favorite strategy to load the Auth0 configuration (ie, RemoteSettings)
@@ -32,36 +46,36 @@ this.Settings = new Settings
     Audience = ""
 };
 ```
+Fill the empty "" with your Auth0 settings. In particular
+* `Domain`, `ClientId` and `Scope` are mandatory. The prepopulated values for `Scope` are usually sufficient for most use cases.
+* When authentication is performed with the `offline_access` scope included, the application will receive a refresh token that can be used by `AuthManager` to request new tokens on behalf of the user, without forcing the user to perform authentication again. This setting is useful if you want to ensure that your user will not be prompted often, in particular when they close and reopen your Unity application.
+* `Audience` is required in case you need an access token to call your own API.
 
-* `Domain`, `ClientId` and `Scope` are mandatory.
-* When authentication is performed with the `offline_access` scope included, it returns a refresh token that can be used by `AuthManager` to request a new user token, without forcing the user to perform authentication again.
-* `Audience` is required in case you need an access token to call to your API.
+### Handling the Authentication Experience
 
-## Device Flow
+This version of the Auth0 Unity SDK implements authentication using the same flow featured today by smart devices, such as smart TVs. The smart device displays a URL and a code, whihc the user is invited to enter in another device (such as their phone), where they can go thru the usual authentication experience without the limitations the samrt device would impose. Once authentication succeeds on the second device, the smart device receives the token(s) it needs and authentication takes place. For more details, please refer to [this article](https://auth0.com/device-flow/).
+The authentication experience, then, boils down to adding something to your Unity app that can start the token request process in the background, and display to the user a prompt for the URL and code to be entered in the authentication device. The Auth0 Unity SDK offers three alternative methods to do so today.
 
-Before start, check the [Auth0 Device Flow's prerequisites](https://auth0.com/docs/quickstart/native/device/01-login#prerequisites).
-
-### Prefabs
-
-#### DeviceFlowRaw
-
-Include the `Assets/Auth0/Prefabs/DeviceFlowRaw` prefab into the section/canvas that you consider.
-
-<p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png"></p>
-
-#### DeviceFlowPrompt
-
-Include the `Assets/Auth0/Prefabs/DeviceFlowPrompt` prefab in your scene and activate it when you need it.
+#### Use a ready-to-use prefab
 
 <p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/154989639-baabe605-49e6-4e53-82a0-e0999466e4e7.png"></p>
 
-### Scenes
+This is by far the easiest method. 
+The Auth0 Unity SDK includes a complete authentication dialog in the prefab called *DeviceFlowPrompt*, located in `Assets/Auth0/Prefabs/DeviceFlowPrompt`. All you need to do is to add *DeviceFlowPrompt* in your scene and wire it to your scene elements (eg connect the Canvas to your main camera and the ray  and activate it when you need it.
+> Please note: this prefab is meant to be used in the context of VR apps based on the Oculus Integration SDK.
 
-The package includes some sample scenes (`Assets/Auth0/Scenes`) to show how to use the described prefabs.
+![DeviceFlowPromptInspector](https://user-images.githubusercontent.com/2208132/155464378-1cfd1bea-3d24-447a-a4a3-b7e09e2bde11.png)
 
-### Scripts
 
-If you don't want to use the included prefabs to show instructions (verification uri, user code) and result, just add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
+#### Use a partially configured prefab
+
+<p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png"></p>
+The Auth0 Unity SDK includes another prefab, *DeviceFlowRaw* (located in `Assets/Auth0/Prefabs/DeviceFlowRaw`), which provides all the essential elements required to present authenticaiton prompts, but leaves hosting those UX elements and their appearance up to you. 
+The *DeviceFlowRaw* doesn't have any dependencies on the Oculus integration SDK and can be used in any Unity application. 
+
+#### Wire up authentication scripts to an UX built from the ground up
+
+Finally, you have the option of skipping prefabs altogether, and wire your experience directly to the authentication logic. Simply add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
 
 <p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151962282-477f71a5-8aff-47fa-9318-a6347aa25130.png"></p>
 
@@ -70,9 +84,14 @@ If you don't want to use the included prefabs to show instructions (verification
 * `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
 * `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
 
-## Auth Manager
+### Scenes
 
-The `AuthManager` is a singleton instance that exposes the following properties:
+The package includes some sample scenes (`Assets/Auth0/Scenes`) you can explore to see the described prefabs in action.
+
+## More details on AuthManager
+
+The `AuthManager` class is at the core of the Auth0 Unity SDK. It is responsible for wrapping and exposing a selected set of functionality from the underlying Auth0 .NET SDK, including the ability to request tokens via device grant and manage token lifecycle (persistence, logout, etc).
+`AuthManager` a singleton instance that exposes the following properties:
 
 * `AuthManager.Instance.Auth0`:
     - Exposes an instance of the [.NET client library for Auth0 Authentication API](https://auth0.github.io/auth0.net/api/Auth0.AuthenticationApi.AuthenticationApiClient.html#methods).
