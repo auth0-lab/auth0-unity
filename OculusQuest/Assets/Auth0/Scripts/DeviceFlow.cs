@@ -54,9 +54,9 @@ namespace Auth0
                     this.ShowResult("You're all set!");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.LogError(ex);
+                // Debug.LogError(ex);
                 this.ShowResult("<color=red>⚠ An unexpected error has occurred. Please try again, and if the problem persists, contact support for further assistance.</color>");
             }
         }
