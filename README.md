@@ -1,3 +1,5 @@
+![banner](https://cdn.auth0.com/website/octo/sdkvr/readme-banner.png)
+
 # Auth0 Unity SDK
 
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git?ref=badge_shield)
@@ -7,10 +9,14 @@ Although the SDK can be used with any Unity application, this release emphasizes
 
 > :warning: This is an experimental library and has not had a complete security review. As we learn and iterate, please be aware that releases may contain breaking changes.
 
+</br>
+
 ## Requirements
 
 * [Unity](https://unity.com/download) Editor 2020.x (or later).
 * The VR prefab included in Auth0 Unity SDK is optimized for Meta Oculus VR devices and requires you to to import [Oculus Integration v37](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) from [Unity Asset Store](https://assetstore.unity.com/).
+
+</br>
 
 ## Setup
 The Auth0 Unity SDK is packaged and distributed as a Unity Asset Package. You have two options for including it in your project.
@@ -22,10 +28,12 @@ The Auth0 Unity SDK is packaged and distributed as a Unity Asset Package. You ha
 > Warning. Some Unity project templates install an old version of the `Version Control` package. If that applies to your project, upon importing the Auth0 Unity SDK you will get the _"Multiple precompiled assemblies with the same name Newtonsoft.Json.dll included or the current platform. Only one assembly with the same name is allowed per platform."_ error.
 This is easily fixed by updating the `Version Control` package (go to `Window -> Package Manager -> Packages: In Project` and update it to `v1.15.12` or later), or by simply removing it if your project doesn't actually need that package.
 
+</br>
 
 ## Getting Started
 The Auth0 Unity SDK offers authentication functionality to Unity apps by wrapping the Auth0 .NET authentication SDK in prefabs that can be easily integrated in Unity scenes.
 Using the SDK requires completing two tasks: initializing the SDK with parameters connecting the app to an application registration in an Auth0 tenant, and instantiating one of the prefabs that will expose the authentication experience to the app user.
+
 
 ### Initializing the Auth0 Unity SDK
 In order to use Auth0 to handle authentication, the application needs to be registered in an Auth0 tenant. If you don't have one, you can sign up [here](https://auth0.com/docs/get-started/auth0-overview/create-tenants).
@@ -51,10 +59,12 @@ Fill the empty "" with your Auth0 settings. In particular
 * When authentication is performed with the `offline_access` scope included, the application will receive a refresh token that can be used by `AuthManager` to request new tokens on behalf of the user, without forcing the user to perform authentication again. This setting is useful if you want to ensure that your user will not be prompted often, in particular when they close and reopen your Unity application.
 * `Audience` is required in case you need an access token to call your own API.
 
+
 ### Handling the Authentication Experience
 
 This version of the Auth0 Unity SDK implements authentication using the same flow featured today by smart devices, such as smart TVs. The smart device displays a URL and a code, whihc the user is invited to enter in another device (such as their phone), where they can go thru the usual authentication experience without the limitations the samrt device would impose. Once authentication succeeds on the second device, the smart device receives the token(s) it needs and authentication takes place. For more details, please refer to [this article](https://auth0.com/device-flow/).
 The authentication experience, then, boils down to adding something to your Unity app that can start the token request process in the background, and display to the user a prompt for the URL and code to be entered in the authentication device. The Auth0 Unity SDK offers three alternative methods to do so today.
+
 
 #### Use a ready-to-use prefab
 
@@ -73,6 +83,7 @@ The Auth0 Unity SDK includes a complete authentication dialog in the prefab call
 The Auth0 Unity SDK includes another prefab, *DeviceFlowRaw* (located in `Assets/Auth0/Prefabs/DeviceFlowRaw`), which provides all the essential elements required to present authenticaiton prompts, but leaves hosting those UX elements and their appearance up to you. 
 The *DeviceFlowRaw* doesn't have any dependencies on the Oculus integration SDK and can be used in any Unity application. 
 
+
 #### Wire up authentication scripts to an UX built from the ground up
 
 Finally, you have the option of skipping prefabs altogether, and wire your experience directly to the authentication logic. Simply add the `Assets/Auth0/Scripts/DeviceFlow` script in your canvas/panel and specify your own UI components:
@@ -84,9 +95,12 @@ Finally, you have the option of skipping prefabs altogether, and wire your exper
 * `User Code`: A text component to set the user code returned by Auth0 (`****-****`).
 * `Result`: A text component to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
 
+
 ### Scenes
 
 The package includes some sample scenes (`Assets/Auth0/Scenes`) you can explore to see the described prefabs in action.
+
+</br>
 
 ## More details on AuthManager
 
@@ -107,6 +121,7 @@ The `AuthManager` class is at the core of the Auth0 Unity SDK. It is responsible
       - `RefreshToken (string)`: Refresh Token that can be used to request new tokens without signing in again.
       - `IdToken (string)`: Identifier Token with user information.
       - `User (UserInfo)`: Decoded IdToken.
+
 
 ### Common scenarios
 
@@ -144,6 +159,8 @@ public void SignOutBtn()
 }
 ```
 
+</br>
+
 ## What is Auth0?
 
 Auth0 helps you to:
@@ -155,13 +172,19 @@ Auth0 helps you to:
 * Analytics of how, when, and where users are logging in.
 * Pull data from other sources and add it to the user profile, through [JavaScript rules](https://auth0.com/docs/rules/current).
 
+</br>
+
 ## Issue Reporting
 
 If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues. This is an Auth0 Lab Experiment, it may not get updated.
 
+</br>
+
 ## Author
 
 [Auth0Lab](https://github.com/auth0-lab) - The experimentation arm of [Auth0](https://auth0.com/).
+
+</br>
 
 ## License
 
