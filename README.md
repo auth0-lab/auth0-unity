@@ -1,10 +1,10 @@
 ![banner](https://cdn.auth0.com/website/octo/sdkvr/readme-banner.png)
 
-# Auth0 Unity SDK
+# Auth0 Lab Unity SDK
 
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B4989%2Fgit%40github.com%3Aauth0-lab%2Fauth0-unity-sdk.git?ref=badge_shield)
 
-The Auth0 Unity SDK is an experimental platform toolkit that makes it easy to add sign in and other identity features to Unity applications, leveraging Auth0 Authentication API.
+The Auth0 Lab Unity SDK is an experimental platform toolkit that makes it easy to add sign in and other identity features to Unity applications, leveraging Auth0 Authentication API.
 Although the SDK can be used with any Unity application, this release emphasizes an exploration of the authentication experience in Virtual Reality (VR) applications.
 
 > :warning: This is an experimental library and has not had a complete security review. As we learn and iterate, please be aware that releases may contain breaking changes.
