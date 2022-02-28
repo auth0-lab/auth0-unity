@@ -80,6 +80,7 @@ The Auth0 Unity SDK includes a complete authentication dialog in the prefab call
 #### Use a partially configured prefab
 
 <p align="center"><img width="400" src="https://user-images.githubusercontent.com/178506/151596725-e39b3c70-689f-4d07-803d-906ebfb96f44.png"></p>
+
 The Auth0 Unity SDK includes another prefab, *DeviceFlowRaw* (located in `Assets/Auth0/Prefabs/DeviceFlowRaw`), which provides all the essential elements required to present authenticaiton prompts, but leaves hosting those UX elements and their appearance up to you. 
 The *DeviceFlowRaw* doesn't have any dependencies on the Oculus integration SDK and can be used in any Unity application. 
 
