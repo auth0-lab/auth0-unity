@@ -4,16 +4,34 @@ using System;
 
 namespace Auth0
 {
+    /// <summary>
+    /// The AuthManager class is at the core of the Auth0 Unity SDK. It is responsible for wrapping and exposing a selected set 
+    /// of functionality from the underlying Auth0 .NET SDK, including the ability to request tokens via device grant and manage 
+    /// token lifecycle (persistence, logout, etc).
+    /// </summary>
     public sealed class AuthManager
     {
         private static readonly Lazy<AuthManager> instance = new Lazy<AuthManager>(() => new AuthManager());
 
+        /// <summary>
+        /// Exposes a singleton instance of the <see cref="AuthManager" /> class.
+        /// </summary>
         public static AuthManager Instance => instance.Value;
 
+        /// <summary>
+        /// Your Auth0 configuration.
+        /// </summary>
         public Settings Settings { get; private set; }
 
+        /// <summary>
+        /// Exposes an instance of the <see cref="AuthApiClient" /> class.
+        /// </summary>
         public AuthApiClient Auth0  { get; private set; }
 
+        /// <summary>
+        /// Exposes an instance of an implementation of <see cref="BaseCredentialsManager"/> class.
+        /// A utility class to streamline the process of storing and renewing credentials.
+        /// </summary>
         public BaseCredentialsManager Credentials  { get; private set; }
 
         private AuthManager()

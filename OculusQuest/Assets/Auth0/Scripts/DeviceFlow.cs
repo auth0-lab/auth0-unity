@@ -10,12 +10,31 @@ using UnityEngine.UI;
 
 namespace Auth0
 {
+    /// <summary>
+    /// Script to handle the device authorization flow. Once completed, credentials are available from AuthManager.Instance.Credentials instance.
+    /// </summary>
     public class DeviceFlow : MonoBehaviour
     {
         [Header("UI Components")]
+        /// <summary>
+        /// <see cref="Canvas"/> to show device flow instructions (including VerificationUri and UserCode components).
+        /// This is deactivated by the script when a result (successful or failed) has to be shown to end-user.
+        /// </summary>
         public Canvas Instructions;
+        
+        /// <summary>
+        /// <see cref="Text"/> to set the verification uri returned by Auth0 (usually it looks like https://{your_auth0_domain}/activate).
+        /// </summary>
         public Text VerificationUri;
+        
+        /// <summary>
+        /// <see cref="Text"/> to set the user code returned by Auth0 (****-****).
+        /// </summary>
         public Text UserCode;
+        
+        /// <summary>
+        /// <see cref="Text"/> to show a confirmation message after end-user finished with the flow or an error if something unexpected happens.
+        /// </summary>
         public Text Result;
 
         private async void OnEnable()
