@@ -1,4 +1,3 @@
-using Auth0.Api.Tokens;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
@@ -17,9 +16,6 @@ namespace Auth0.Api
     /// Full documentation on the Auth0 Authentication API is available at https://auth0.com/docs/api/authentication
     /// </remarks>
     public class AuthApiClient : AuthenticationApiClient {
-        private static readonly IdTokenValidator idTokenValidator = new IdTokenValidator();
-        private readonly TimeSpan idTokenValidationLeeway = TimeSpan.FromMinutes(1);
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthApiClient" /> class.
         /// </summary>
@@ -68,20 +64,7 @@ namespace Auth0.Api
                 throw apiError;    
             }
 
-            if (!string.IsNullOrWhiteSpace(response.IdToken))
-            {
-                // GetTokenAsync(DeviceCodeTokenRequest) isn't validating the id_token
-                // See https://github.com/auth0/auth0.net/blob/8973a9d0962c359e38543eea02b8feeef809651d/src/Auth0.AuthenticationApi/AuthenticationApiClient.cs#L308
-                await AssertIdTokenValid(response.IdToken, clientId, JwtSignatureAlgorithm.RS256, string.Empty).ConfigureAwait(false);
-            }
-
             return response;
-        }
-
-        private Task AssertIdTokenValid(string idToken, string audience, JwtSignatureAlgorithm algorithm, string clientSecret, string organization = null)
-        {
-            var requirements = new IdTokenRequirements(algorithm, this.BaseUri.AbsoluteUri, audience, idTokenValidationLeeway, null, organization);
-            return idTokenValidator.Assert(requirements, idToken, clientSecret);
         }
     }
 }

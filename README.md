@@ -21,7 +21,7 @@ Although the SDK can be used with any Unity application, this release emphasizes
 ## Setup
 The Auth0 Unity SDK is packaged and distributed as a Unity Asset Package. You have two options for including it in your project.
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.2.0.unitypackage) and import it into your proyect as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.3.0.unitypackage) and import it into your proyect as a `Custom Package`.
 
 <p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png"></p>
 
@@ -109,7 +109,7 @@ The `AuthManager` class is at the core of the Auth0 Unity SDK. It is responsible
 `AuthManager` a singleton instance that exposes the following properties:
 
 * `AuthManager.Instance.Auth0`:
-    - Exposes an instance of the [.NET client library for Auth0 Authentication API](https://auth0.github.io/auth0.net/api/Auth0.AuthenticationApi.AuthenticationApiClient.html#methods).
+    - Exposes an instance of the [.NET client library v7.15.0 for Auth0 Authentication API](https://auth0.github.io/auth0.net/api/Auth0.AuthenticationApi.AuthenticationApiClient.html#methods).
     - Also includes a Device Flow wrapper to poll the token endpoint to request a token (`Task<AccessTokenResponse> ExchangeDeviceCodeAsync(string clientId, string deviceCode, int retryInterval`).
 * `AuthManager.Instance.Credentials`: A utility class to streamline the process of storing and renewing credentials. You can access the `AccessToken` or `IdToken` properties from the `Credentials` instance.
     - `bool HasValidCredentials()`: Stored credentials are considered valid if they have not expired or can be refreshed. Useful to check if a user has already logged in.
