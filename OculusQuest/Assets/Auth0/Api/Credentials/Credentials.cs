@@ -1,12 +1,23 @@
 using Auth0.AuthenticationApi.Models;
 using Newtonsoft.Json;
-using System.IdentityModel.Tokens.Jwt;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Auth0.Api.Credentials
 {
+    /// <summary>
+    /// Holds the user's credentials returned by Auth0.
+    /// </summary>
     public class Credentials
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Credentials" /> class.
+        /// </summary>
+        /// <param name="accessToken">Access token for specified API (audience).</param>
+        /// <param name="expiresAt">Expiration date of the access token.</param>
+        /// <param name="refreshToken">Refresh Token that can be used to request new tokens without signing in again.</param>
+        /// <param name="idToken">Identifier token with user information.</param>
+        /// <param name="scope">Access token's granted scope.</param>
         public Credentials(string accessToken, DateTime expiresAt, string refreshToken, string idToken, string scope)
         {
             this.AccessToken = accessToken;
@@ -30,7 +41,7 @@ namespace Auth0.Api.Credentials
         public string AccessToken { get; }
 
         /// <summary>
-        /// Expiration date of the Access Token.
+        /// Expiration date of the access token.
         /// </summary>
         public DateTime ExpiresAt { get; }
 
@@ -40,17 +51,17 @@ namespace Auth0.Api.Credentials
         public string RefreshToken { get; }
 
         /// <summary>
-        /// Identifier Token with user information.
+        /// Identifier token with user information.
         /// </summary>
         public string IdToken { get; }
 
         /// <summary>
-        /// Access Token's granted scope.
+        /// Access token's granted scope.
         /// </summary>
         public string Scope { get; }
 
         /// <summary>
-        /// Decoded id_token.
+        /// Decoded IdToken.
         /// </summary>
         public UserInfo User { get; }
     }

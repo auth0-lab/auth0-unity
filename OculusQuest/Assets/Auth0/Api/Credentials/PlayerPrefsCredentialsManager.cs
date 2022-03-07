@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Auth0.Api.Credentials
 {
+    /// <summary>
+    /// An implementation of <see cref="BaseCredentialsManager"/> that uses <see cref="PlayerPrefs"/> as storage.
+    /// </summary>
     public class PlayerPrefsCredentialsManager : BaseCredentialsManager
     {
         private const string KEY_ACCESS_TOKEN = "com.auth0.access_token";
@@ -18,12 +21,18 @@ namespace Auth0.Api.Credentials
 
         private readonly string clientId;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerPrefsCredentialsManager" /> class.
+        /// </summary>
+        /// <param name="authApiClient">An instance of <see cref="AuthApiClient"/>.</param>
+        /// <param name="clientId">Your Auth0 client id.</param>
         public PlayerPrefsCredentialsManager(AuthApiClient authApiClient, string clientId)
         {
             this.auth0 = authApiClient;
             this.clientId = clientId;
         }
 
+        /// <inheritdoc />
         public override bool HasValidCredentials()
         {
             var accessToken = PlayerPrefs.GetString(KEY_ACCESS_TOKEN);
@@ -46,6 +55,7 @@ namespace Auth0.Api.Credentials
             return true;
         }
 
+        /// <inheritdoc />
         public override void ClearCredentials()
         {
             PlayerPrefs.DeleteKey(KEY_ACCESS_TOKEN);
@@ -55,6 +65,7 @@ namespace Auth0.Api.Credentials
             PlayerPrefs.DeleteKey(KEY_SCOPE);
         }
 
+        /// <inheritdoc />
         public override async Task<Credentials> GetCredentials()
         {
             var accessToken = PlayerPrefs.GetString(KEY_ACCESS_TOKEN);
@@ -88,7 +99,7 @@ namespace Auth0.Api.Credentials
                     ClientId = this.clientId,
                     RefreshToken = refreshToken
                 });
-                var renewedCredentials = tokenResp.ToCredentials(scope);
+                var renewedCredentials = AccessTokenResponseToCredentials(tokenResp, scope);
 
                 SaveCredentials(renewedCredentials);
                 return renewedCredentials;
@@ -99,9 +110,10 @@ namespace Auth0.Api.Credentials
             }
         }
 
+        /// <inheritdoc />
         public override void SaveCredentials(AccessTokenResponse tokenResponse, string scope)
         {
-            SaveCredentials(tokenResponse.ToCredentials(scope));
+            SaveCredentials(AccessTokenResponseToCredentials(tokenResponse, scope));
         }
 
         private static void SaveCredentials(Credentials credentials)
@@ -112,11 +124,8 @@ namespace Auth0.Api.Credentials
             PlayerPrefs.SetString(KEY_EXPIRES_AT, credentials.ExpiresAt.ToString(CultureInfo.InvariantCulture));
             PlayerPrefs.SetString(KEY_SCOPE, credentials.Scope);
         }
-    }
 
-    public static class CredentialsExtensions
-    {
-        public static Credentials ToCredentials(this AccessTokenResponse tokenResponse, string scope)
+        private static Credentials AccessTokenResponseToCredentials(AccessTokenResponse tokenResponse, string scope)
         {
             return new Credentials(
                 tokenResponse.AccessToken,
