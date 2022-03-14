@@ -7,7 +7,7 @@
 The Auth0 Lab Unity SDK is an experimental platform toolkit that makes it easy to add sign in and other identity features to Unity applications, leveraging Auth0 Authentication API.
 Although the SDK can be used with any Unity application, this release emphasizes an exploration of the authentication experience in Virtual Reality (VR) applications.
 
-> :warning: This is an experimental library and has not had a complete security review. As we learn and iterate, please be aware that releases may contain breaking changes.
+> :warning: This is a PROOF OF CONCEPT experimental library and has not had a complete security review. As we learn and iterate, please be aware that releases may contain breaking changes.
 
 </br>
 
