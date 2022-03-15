@@ -21,7 +21,7 @@ Although the SDK can be used with any Unity application, this release emphasizes
 ## Setup
 The Auth0 Unity SDK is packaged and distributed as a Unity Asset Package. You have two options for including it in your project.
 * **Option 1 _(not available yet)_:** Install and import the Auth0 package from [Unity Assets Store](https://assetstore.unity.com/).
-* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity-sdk/raw/main/Auth0UnitySDK-v0.3.0.unitypackage) and import it into your project as a `Custom Package`.
+* **Option 2:** Download [Auth0UnitySDK.unitypackage](https://github.com/auth0-lab/auth0-unity/raw/main/Auth0UnitySDK-v0.3.0.unitypackage) and import it into your project as a `Custom Package`.
 
 <p align="center"><img width="500" src="https://user-images.githubusercontent.com/178506/151574518-1a5bad47-cb07-433d-998a-5e1398b8f181.png"></p>
 
