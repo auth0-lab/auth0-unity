@@ -129,14 +129,14 @@ The `AuthManager` class is at the core of the Auth0 Unity SDK. It is responsible
 1. Change UI based on current credentials:
 
 ```c#
-public void UpdateLoginStatus()
+public async void UpdateLoginStatus()
 {
-    var loggedIn = AuthManager.Instance.credentials.HasValidCredentials();
+    var loggedIn = AuthManager.Instance.Credentials.HasValidCredentials();
 
     if (loggedIn)
     {
         // Show a welcome message and the SignOut button
-        var creds = await AuthManager.Instance.credentials.GetCredentials();
+        var creds = await AuthManager.Instance.Credentials.GetCredentials();
         var userInfo = await AuthManager.Instance.Auth0.GetUserInfoAsync(creds.AccessToken);
 
         welcomeText.text = String.Format("Welcome back {0}!", userInfo.FullName);
@@ -153,10 +153,10 @@ public void UpdateLoginStatus()
 2. Logout
 
 ```cs
-public void SignOutBtn()
+public async void SignOutBtn()
 {
-    AuthManager.Instance.credentials.ClearCredentials();
-    this.UpdateLoginStatus();
+    AuthManager.Instance.Credentials.ClearCredentials();
+    await this.UpdateLoginStatus();
 }
 ```
 
