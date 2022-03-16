@@ -54,7 +54,7 @@ this.Settings = new Settings
     Audience = ""
 };
 ```
-Fill the empty "" with your Auth0 settings. In particular
+Fill the empty `""` with your Auth0 settings. In particular
 * `Domain`, `ClientId` and `Scope` are mandatory. The prepopulated values for `Scope` are usually sufficient for most use cases.
 * When authentication is performed with the `offline_access` scope included, the application will receive a refresh token that can be used by `AuthManager` to request new tokens on behalf of the user, without forcing the user to perform authentication again. This setting is useful if you want to ensure that your user will not be prompted often, in particular when they close and reopen your Unity application.
 * `Audience` is required in case you need an access token to call your own API.
